@@ -1,7 +1,7 @@
 .App {
   text-align: center;
 }
-
+/*
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -35,4 +35,135 @@
   to {
     transform: rotate(360deg);
   }
+}*/
+
+@import "~antd/dist/antd.css";
+
+@media (max-width: 995px) {
+  .contenedor{
+    margin: 1em auto;
+    width: 78%;
+  }
+  #contenedor {
+    background: #fff;
+    border: 1px solid black;
+    border-radius: 3%;
+    margin: 1em auto;
+    padding: 1em;
+  }
+  h2 {
+    font: normal 1.5em arial, sans-serif;
+    text-align: center;
+    margin-top: 10%;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  .boton {
+    border-top: 2px solid #ccc;
+    padding: 1em 0;
+    margin-top: 1em;
+    text-align: right;
+  }
+  label {
+    font-size: 1.3em;
+    margin-top: 3%;
+  }
+  input {
+    margin-top: 5px;
+    border: 1px solid black;
+  }
+  .form-control {
+    border: 1px solid black;
+  }
+  .nav-link {
+    font-size: medium;
+    text-align: center;
+    margin: 0.5em auto;
+    width: 60%;
+    border-radius: 40px;
+  }
+  .nav-link:hover {
+    border-radius: 40px;
+    background-color: grey; 
+  }
+  #imgJuego {
+    width: auto;
+  }
+  body{
+    /*background-image: url("./imagenes/fondoJuegos.jpg");*/
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
 }
+
+
+@media (min-width: 995px) {
+  .contenedor{
+    margin: 1em auto;
+    width: 78%;
+  }
+  #contenedor {
+    background: #fff;
+    border: 1px solid black;
+    border-radius: 3%;
+    margin: 1em auto;
+    padding: 1em;
+    width: 80%;
+  }
+  form {
+    display: inline;
+  }
+  h2 {
+    font: normal 1.8em arial, sans-serif;
+    text-align: center;
+    margin-top: 7%;
+    color: black;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  .boton {
+    border-top: 2px solid #ccc;
+    padding: 1em 0;
+    margin-top: 2em;
+    text-align: right;
+  }
+  li {
+    margin: 0.5em 0;
+    padding: 0.5em;
+  }
+  label {
+    font-size: 1.3em;
+  }
+  input {
+    margin-top: 5px;
+    border: 1px solid black;
+  }
+  .form-control {
+    border: 1px solid black;
+  }
+  .nav-link {
+    font-size: large;
+    text-align: center;
+    position: relative;
+    border-radius: 40px;
+  }
+  .nav-link:hover{
+    border-radius: 40px;
+    background-color: grey; 
+  }
+  #btnComprar {
+    float: right;
+  }
+  body{
+    /*background-image: url("./imagenes/fondoJuegos.jpg");*/
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+}
+
