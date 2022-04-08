@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 
-import $ from "jquery";
 
 import { UploadOutlined, FileImageOutlined } from '@ant-design/icons';
 
@@ -15,20 +14,7 @@ export default function App() {
     const [ellipsis] = React.useState(true);
 
     useEffect(() => {
-        axios.get("https://localhost:8000/api/devolverJuegosIndependiente", {
-            headers: {
-                "Authorization": 'Bearer ' + sessionStorage.getItem('token')
-            }
-        })
-            .then(
-                (tienda) => {
-                    settienda(tienda.data);
-                    console.log(tienda);
-                },
-                (error) => {
-                    setError(error);
-                }
-            )
+     
     }, [])
 
     return (

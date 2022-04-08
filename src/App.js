@@ -3,10 +3,10 @@ import React,{useState, useEffect} from "react";
 import axios from 'axios';
 import { BrowserRouter, Routes, Route, Link, } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.min.js";
 import "./App.css";
 import { BackTop, Tooltip, Form, Input, Button, Divider, notification, Modal, loading } from 'antd';
 import { UpCircleTwoTone, LockOutlined, MailOutlined, UserOutlined } from '@ant-design/icons';
-import $ from "jquery";
 
 import Tienda from "./components/tienda.component.js";
 import Biblioteca from "./components/biblioteca.component.js";
@@ -57,12 +57,10 @@ function App() {
                     sessionStorage.setItem("token", response.data.token); 
                     window.location.href = "/";*/
                     
-                }else{
-                    
-                console.log(response);
+                }else{  
+                    console.log(response);
                 }
             })
-
     }
 
     //Funciones de registro
@@ -152,39 +150,40 @@ function App() {
     </>
 
     const logueado =   <>
-    <li class="nav-item">
-    <a class="nav-link " aria-current="page" href="/Miperfil">Mi Perfil</a>
+    <li className="nav-item">
+    <a className="nav-link " aria-current="page" href="/Miperfil">Mi Perfil</a>
     </li>
-    <li class="nav-item">
-    <a class="nav-link" aria-current="page" href="/login">Logout</a>
+    <li className="nav-item">
+    <a className="nav-link" aria-current="page" href="/login">Logout</a>
     </li>
     </>;
 
     return (
         <div className="App">
         <div>
-        <nav class="navbar navbar-expand-lg navbar-primary bg-primary">
-            <div class="container-fluid">
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav nav-primary me-auto mb-2 mb-lg-0">
-                <li class="nav-item active">
-                    <a class="nav-link" aria-current="page" href="/">Tienda</a>
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div className="container-fluid">
+                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul className="navbar-nav nav-dark me-auto mb-2 mb-lg-0">
+                <li className="nav-item active">
+                    <a className="nav-link" aria-current="page" href="/">Tienda</a>
                     </li>
-                    <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/biblioteca">Biblioteca</a>
+                    <li className="nav-item">
+                    <a className="nav-link" aria-current="page" href="/biblioteca">Biblioteca</a>
                     </li>
-                    <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/juegosIndependientes">Juegos Independientes</a>
+                    <li className="nav-item">
+                    <a className="nav-link" aria-current="page" href="/juegosIndependientes">Juegos Independientes</a>
                     </li>
                 </ul>
-                <form class="d-flex">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <form className="d-flex">
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
 
                     {loginVisible
                         ? logueado
                         :   
-                        <li class="nav-item" onClick={showModalLogin}>
-                            <a class="nav-link " aria-current="page" >Login</a>
+                        <li className
+="nav-item" onClick={showModalLogin}>
+                            <a className="nav-link " aria-current="page" >Login</a>
                         </li>
                     }
                       

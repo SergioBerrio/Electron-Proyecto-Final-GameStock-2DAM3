@@ -6,6 +6,9 @@
   -webkit-user-select: none;
   -webkit-app-region: drag;
 }
+body{
+  -webkit-app-region: drag;
+}
 /*
 .App-logo {
   height: 40vmin;
@@ -156,10 +159,11 @@
     position: relative;
     border-radius: 40px; 
     color: #ffffff;
+   
   }
   .nav-link:hover{
     border-radius: 40px;
-    background-color: #fff; 
+    background-color: black; 
   }
   #btnComprar {
     float: right;
