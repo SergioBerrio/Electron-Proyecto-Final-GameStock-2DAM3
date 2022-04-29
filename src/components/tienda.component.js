@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-
-
+import $ from "jquery";
 import { UploadOutlined, FileImageOutlined } from '@ant-design/icons';
-
 import { Button, Modal, Typography, Input, Image, Form, notification, Tooltip, InputNumber,Rate,Divider } from 'antd';
 const { Paragraph } = Typography;
 
 export default function App() {
     const [error, setError] = useState(null);
-    const [tienda, settienda] = useState([]);
-
+    const [videojuegos, setvideojuegos] = useState([]);
     const [ellipsis] = React.useState(true);
+    var arrayCategoria = [];
 
     useEffect(() => {
         
@@ -50,29 +48,177 @@ export default function App() {
         axios.get("https://localhost:7117/api/GameStock/videojuegos", {
            
         }) .then((response) => {
-            console.log(response);
-            if(response.data.status==="success"){
+            console.log(response.data);
                 
-            //console.log(response);
-                /*sessionStorage.setItem('email', document.getElementById("email").value);
-                sessionStorage.setItem("token", response.data.token); 
-                window.location.href = "/";*/
+            setvideojuegos(response.data);
                 
-            }else{
-                
-            //console.log(response);
-            }
         })
        
     }, [])
     
+    
+    $( document ).ready(function() {
+        
+    $("#categoriaAccion").on('click', function() {
+
+        if(arrayCategoria.includes("Accion")){
+
+            $("#categoriaAccion").css("font-weight", "");
+
+            for (let i = 0; i < arrayCategoria.length; i++) {
+                if(arrayCategoria[i] === "Accion") {
+                    arrayCategoria.splice(i, 1);
+                }
+            }
+
+            console.log(arrayCategoria);
+
+        } else {
+
+            $("#categoriaAccion").css("font-weight", "bold");
+
+            arrayCategoria.push("Accion");
+
+            console.log(arrayCategoria)
+        }
+    });
+
+    $("#categoriaAventura").on('click', function() {
+
+        if(arrayCategoria.includes("Aventura")){
+
+            $("#categoriaAventura").css("font-weight", "");
+
+            for (let i = 0; i < arrayCategoria.length; i++) {
+                if(arrayCategoria[i] === "Aventura") {
+                    arrayCategoria.splice(i, 1);
+                }
+            }
+
+            console.log(arrayCategoria);
+
+        } else {
+
+            $("#categoriaAventura").css("font-weight", "bold");
+
+            arrayCategoria.push($("#categoriaAventura").text());
+
+            console.log(arrayCategoria);
+        }
+    });
+
+    $("#categoriaSurvival").on('click', function() {
+
+        if(arrayCategoria.includes("Survival")){
+
+            $("#categoriaSurvival").css("font-weight", "");
+
+            for (let i = 0; i < arrayCategoria.length; i++) {
+                if(arrayCategoria[i] === "Survival") {
+                    arrayCategoria.splice(i, 1);
+                }
+            }
+
+            console.log(arrayCategoria);
+
+        } else {
+
+            $("#categoriaSurvival").css("font-weight", "bold");
+
+            arrayCategoria.push($("#categoriaSurvival").text());
+
+            console.log(arrayCategoria);
+        }
+    });
+
+    $("#categoriaMMO").on('click', function() {
+
+        if(arrayCategoria.includes("MMO")){
+            
+            $("#categoriaMMO").css("font-weight", "");
+
+            for (let i = 0; i < arrayCategoria.length; i++) {
+                if(arrayCategoria[i] === "MMO") {
+                    arrayCategoria.splice(i, 1);
+                }
+            }
+
+            console.log(arrayCategoria);
+
+        } else {
+
+            $("#categoriaMMO").css("font-weight", "bold");
+
+            arrayCategoria.push($("#categoriaMMO").text());
+
+            console.log(arrayCategoria);
+        }
+    });
+
+    $("#categoriaShooter").on('click', function() {
+
+        if(arrayCategoria.includes("Shooter")){
+
+            $("#categoriaShooter").css("font-weight", "");
+
+            for (let i = 0; i < arrayCategoria.length; i++) {
+                if(arrayCategoria[i] === "Shooter") {
+                    arrayCategoria.splice(i, 1);
+                }
+            }
+
+            console.log(arrayCategoria);
+
+        } else {
+
+            $("#categoriaShooter").css("font-weight", "bold");
+
+            arrayCategoria.push($("#categoriaShooter").text());
+
+            console.log(arrayCategoria);
+        }
+    });
+
+    $("#categoriaMundoAbierto").on('click', function() {
+
+        if(arrayCategoria.includes("Mundo abierto")){
+
+            $("#categoriaMundoAbierto").css("font-weight", "");
+
+            for (let i = 0; i < arrayCategoria.length; i++) {
+                if(arrayCategoria[i] === "Mundo abierto") {
+                    arrayCategoria.splice(i, 1);
+                }
+            }
+
+            console.log(arrayCategoria);
+
+        } else {
+
+            $("#categoriaMundoAbierto").css("font-weight", "bold");
+
+            arrayCategoria.push($("#categoriaMundoAbierto").text());
+
+            console.log(arrayCategoria);
+        }
+    });
+    });
+
+
     return (
         <>
             <div className="m-4 p-2">
             <div>
-                    <button className="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-                        Abrir filtros
-                    </button>
+                <div class="field" id="searchform">
+                    <input type="text" id="searchterm" placeholder="Escribe lo que quieras busscar" />
+                        <button className="btn btn-primary" type="button">
+                            Buscar
+                        </button>
+                        <button className="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                            Abrir filtros
+                        </button>
+                </div>
+                    
 
                     <div className="offcanvas offcanvas-start" tabIndex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
                         <div className="offcanvas-header">
@@ -94,7 +240,7 @@ export default function App() {
                         
                         <br></br><br></br><br></br>
                         <label htmlFor="estrellitas" className="htmlForm-label m-2"> Valoración : </label>
-                        <Rate  id="estrellitas"></Rate>
+                        <Rate  id="estrellitas" defaultValue={3}></Rate>
 
                         <br></br>
                         <br></br>
@@ -104,26 +250,52 @@ export default function App() {
                         
                         <br></br>
                         
-                        <a>Acción</a>
+                        <span id="categoriaAccion">Acción</span>
                         <br></br>
-                        <a>Aventura</a>
+                        <span id="categoriaAventura">Aventura</span>
                         <br></br>
-                        <a>Survival</a>
+                        <span id="categoriaSurvival">Survival</span>
                         <br></br>
-                        <a>MMO</a>
+                        <span id="categoriaMMO">MMO</span>
                         <br></br>
-                        <a>Shooter</a>
+                        <span id="categoriaShooter">Shooter</span>
                         <br></br>
-                        <a>Mundo abierto</a>
+                        <span id="categoriaMundoAbierto">Mundo abierto</span>
 
                         </div>
                     </div>
                 </div>
 
                 <div id="divJuegos">
+                {videojuegos.map(videojuegos => (  
 
+                    <div className="col-lg-4 col-md-6">
+                        <div class="card m-3">
 
+                           <div className="card-body">
+                                    <h3 className="card-title">{videojuegos.nombre}</h3>
 
+                                    
+
+                                    <Paragraph style={{ whiteSpace: "pre-line" }}
+                                        ellipsis={
+                                            ellipsis ? {
+                                                rows: 1.5,
+                                                expandable: true,
+                                                symbol: 'leer más',
+                                            } : false
+                                        }>
+                                        {videojuegos.descripcion}
+                                    </Paragraph>
+
+                                    <h4>{videojuegos.precio}€</h4><Button id="btnComprar" shape="round" onClick={() => {
+                                        
+                                    }}>Más info</Button>
+
+                                </div>
+                        </div>
+                    </div> 
+                    ))}
 
                 </div>
             </div>

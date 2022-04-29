@@ -17,6 +17,7 @@ function App() {
 
     const [loginVisible, setloginVisible] = useState(false);
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [idUser, setidUser] = useState();
     const [isModalVisibleRegistro, setIsModalVisibleRegistro] = useState(false);
     const [modal, setModal] = useState(true);
 
@@ -51,15 +52,7 @@ function App() {
         })
             .then((response) => {
                 console.log(response);
-                if(response.data.status==="success"){
-                    
-                    /*sessionStorage.setItem('email', document.getElementById("email").value);
-                    sessionStorage.setItem("token", response.data.token); 
-                    window.location.href = "/";*/
-                    
-                }else{  
-                    console.log(response);
-                }
+                sessionStorage.setItem("idUsuario",response.data);
             })
     }
 
@@ -71,11 +64,6 @@ function App() {
         })
             .then((response) => {
                 console.log(response);
-                if (response.data.status === "success") {
-                    //window.location.href = "/login";
-                } else {
-                    alert("fallo");
-                }
             })
 
     }
@@ -181,8 +169,7 @@ function App() {
                     {loginVisible
                         ? logueado
                         :   
-                        <li className
-="nav-item" onClick={showModalLogin}>
+                        <li className="nav-item" onClick={showModalLogin}>
                             <a className="nav-link " aria-current="page" >Login</a>
                         </li>
                     }

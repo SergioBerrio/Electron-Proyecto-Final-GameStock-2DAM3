@@ -105,6 +105,32 @@ body{
     background-attachment: fixed;
     background-size: cover;
   }
+  #categoriaAccion:hover{
+    cursor: pointer;
+    font-weight: bold;
+  }
+  #categoriaAventura:hover{
+    cursor: pointer;
+    font-weight: bold;
+  }
+  #categoriaSurvival:hover{
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  #categoriaMMO:hover{
+    cursor: pointer;
+    font-weight: bold;
+  }
+  #categoriaShooter:hover{
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  #categoriaMundoAbierto:hover{
+    cursor: pointer;
+    font-weight: bold;
+  }
 }
 
 
@@ -174,5 +200,28 @@ body{
     background-attachment: fixed;
     background-size: cover;
   }
+  #categoriaAccion:hover{
+    cursor: pointer;
+    font-weight: bold;
+  }
+  #categoriaAventura:hover{
+    cursor: pointer;
+    font-weight: bold;
+  }
+  #categoriaSurvival:hover{
+    cursor: pointer;
+    font-weight: bold;
+  }
+  #categoriaMmo:hover{
+    cursor: pointer;
+    font-weight: bold;
+  }
+  #categoriaShooter:hover{
+    cursor: pointer;
+    font-weight: bold;
+  }
+  #categoriaMundoAbierto:hover{
+    cursor: pointer;
+    font-weight: bold;
+  }
 }
-
