@@ -275,7 +275,8 @@ export default function App() {
                            <div className="card-body">
                                     <h3 className="card-title">{videojuegos.nombre}</h3>
 
-                                    
+                                    <Image src={videojuegos.imagen} id="imgJuegoUsuario" className="mb-4" alt="imagen" height={200}></Image>
+
 
                                     <Paragraph style={{ whiteSpace: "pre-line" }}
                                         ellipsis={

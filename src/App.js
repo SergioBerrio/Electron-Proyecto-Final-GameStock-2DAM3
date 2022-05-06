@@ -48,12 +48,18 @@ function App() {
         axios.post('https://localhost:7117/api/User/login', {
             NOMBRE: "A",
             EMAIL: document.getElementById("emaillogin").value,
-            CONTRASENA: document.getElementById("passwordlogin").value
+            CONTRASENA: document.getElementById("passwordlogin").value,
+            IMAGEN: "A",
+            DESCRIPCION: "A",
         })
             .then((response) => {
                 console.log(response);
                 sessionStorage.setItem("idUsuario",response.data);
             })
+
+            handleCancelLogin();
+
+            setloginVisible(true);
     }
 
     //Funciones de registro
