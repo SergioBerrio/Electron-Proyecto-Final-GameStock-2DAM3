@@ -8,11 +8,7 @@ const {app, BrowserWindow} = require('electron')
   
   function createWindow () {
     // Create the browser window.
-    win = new BrowserWindow({width: 1200, height: 800,titleBarStyle: 'hidden',
-    titleBarOverlay: {
-      color: '#2f3241',
-      symbolColor: '#74b1be'
-    } })
+    win = new BrowserWindow({width: 1200, height: 800})
     win.show()
     // and load the index.html of the app.
     win.loadURL(url.format({

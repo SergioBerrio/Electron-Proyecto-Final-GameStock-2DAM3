@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 
-import { Image, Rate } from 'antd';
+import { EditOutlined,UserOutlined,MailOutlined,LockOutlined,FileImageOutlined} from '@ant-design/icons';
+import { Button, Switch,Modal, Typography, Input, Image ,Card, Col, Row, Space,Rate,Divider,Form ,Steps} from 'antd';
 
 export default function App() {
-    const [error, setError] = useState(null);
-    const [videojuegos, setVideojuegos] = useState([]);
     const [usuarios, setUsuarios] = useState([]);
-    const [resenasUsuario, setResenasUsuario] = useState([]);
-
-    var arrayJuegos = [];
+    const [editando, setEditando] = useState(false);
 
     //const [ellipsis] = React.useState(true);
 
@@ -21,91 +18,90 @@ export default function App() {
                 (usuarios) => {
                     setUsuarios(usuarios.data);
                 },
-                (error) => {
-                    setError(error);
-                }
-            )
-
-
-        axios.get("https://localhost:7117/api/GameStock/resena/usuario/" + sessionStorage.getItem('idUsuario'), {
-    
-        }) 
-            .then(
-                (resenasUsuario) => {
-                    setResenasUsuario(resenasUsuario.data);
-
-                    for (let i = 0; i < resenasUsuario.data.length; i++) {
-                        
-                        axios.get("https://localhost:7117/api/GameStock/videojuego/" + resenasUsuario.data[i].idjuego, {
-            
-                        })
-                            .then(
-                                (videojuegos) => {
-                                    setVideojuegos(videojuegos.data);
-
-                                    arrayJuegos.push(videojuegos.data[i].nombre);
-                                },
-                                (error) => {
-                                    setError(error);
-                                }
-                            )
-                    }
-                },
-                (error) => {
-                    setError(error);
+                (error) => { 
                 }
             )
     }, [])
-    
 
+    const handleCancel = () => {
+        setEditando(false);
+    };
+
+    const modalEditar = <>
+    <Modal title="Edita tus datos" visible={editando} onCancel={handleCancel}
+        footer={[
+            <Button type="primary" htmlType="submit" className="register-form-button" onClick={editarUsuario}>
+                Confirmar
+            </Button>
+        ]}>
+        <Form name="normal_register" initialValues={{ remember: true }}>
+
+            <Form.Item name="nombre" label="Nombre" rules={[{ required: true, message: 'Por favor introduce un nombre correcto!' }]}>
+
+                <Input id="nombre" className="input" prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Nombre" />
+
+            </Form.Item>
+
+            <Form.Item name="email" label="Email" rules={[{ required: true, type: "email", message: 'Por favor introduce un Email correcto!' }]}>
+
+                <Input id="email" className="input" prefix={<MailOutlined className="site-form-item-icon" />} placeholder="Email" />
+
+            </Form.Item>
+
+            <Form.Item name="password" label="Contraseña" rules={[{ required: true, message: 'Por favor introduce tu contraseña!' }]}>
+
+                <Input.Password id="password" className="input" prefix={<LockOutlined className="site-form-item-icon" />} placeholder="Contraseña"/>
+
+            </Form.Item>
+            <Form.Item name="imagen" label="Imagen" rules={[{ required: true, message: 'Por favor introduce tu url de foto!' }]}>
+
+                <Input id="imagen" className="input" prefix={<FileImageOutlined className="site-form-item-icon" />} placeholder="Foto"/>
+
+            </Form.Item>
+
+            <Form.Item name="descripcion" label="Descripcion" rules={[{ required: true, message: 'Por favor introduce una descripcion correcto!' }]}>
+
+                <Input id="descripcion" className="input" prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Email" />
+
+            </Form.Item>
+
+        </Form>
+    </Modal>
+</>
+
+    function editarUsuario(){
+        console.log(document.getElementById("nombre").value)
+        console.log(document.getElementById("email").value)
+        console.log(document.getElementById("password").value)
+        console.log(document.getElementById("imagen").value)
+        console.log(document.getElementById("descripcion").value)
+
+        axios.put('https://localhost:7117/api/User/actualizar/'+sessionStorage.getItem("idUsuario"), {
+            NOMBRE: document.getElementById("nombre").value,
+            EMAIL: document.getElementById("email").value,
+            CONTRASENA: document.getElementById("password").value,
+            IMAGEN: document.getElementById("imagen").value,
+            DESCRIPCION: document.getElementById("descripcion").value
+        })
+            .then((response) => {
+                console.log(response);
+            })
+        
+    }
     return (
         <>
+        {editando?modalEditar:<></>}
+        
             <div className="m-4 p-2">
                 {usuarios.map(usuario => (
-                    <div>
-                        <Image src={usuario.imagen} id="imgUsuario" className="mb-4" alt="imagen" height={200}></Image>
-
-                        <br></br>
-
-                        <b>{usuario.nombre}</b>
-
-                        <br></br>
-
-                        <p>{usuario.descripcion}</p>
-
-                        <br></br>
-                        <br></br>
-
-                        {resenasUsuario.map((resenaUsuario, index) => (
-                            <div>
-                                {arrayJuegos[index]}
-
-                                <br></br>
-
-                                <p>{resenaUsuario.descripcion}</p>
-
-                                <br></br>
-
-                                <label htmlFor="valoracionResena" className="htmlForm-label m-2">Valoración de la reseña: </label>
-                                <Rate  id="valoracionResena" disabled={true} defaultValue={resenaUsuario.valoracion} value={resenaUsuario.valoracion}></Rate>
-                            </div>
-                        ))}
-
-                        {videojuegos.map((videojuego, index) => (
-                            <div>
-                                <Image src={videojuego.imagen} id="imgJuegoUsuario" className="mb-4" alt="imagen" height={200}></Image>
-
-                                <br></br>
-
-                                <b>{videojuego.nombre}</b>
-
-                                <br></br>
-
-                                <p>{videojuego.descripcion}</p>
-                            </div>
-                        ))}
-                    </div>
-                ))}
+                    <Card hoverable style={{ width: 1100 ,height:600,float:"left" }} cover={<Image preview={false} src={usuario.imagen} id="imgUsuario" className="mb-4" alt="imagen" style={{ width: 400 ,height:300 }}></Image>}>
+                     <h1 width={60}>{usuario.nombre}</h1>
+                     <p><b>Descripción:</b>{usuario.descripcion}</p> 
+                     <p><b>Email: </b>{usuario.email}</p>
+                     <Button type="primary" onClick={() => setEditando(true)}>Editar</Button>
+        
+                    </Card>
+                ))} 
             </div>
         </>
     );
